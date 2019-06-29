@@ -1,5 +1,12 @@
 <script>
-	let current = 'svelte';
+	const frames = [
+		{ frame: 'Svelte' },
+		{ frame: 'React' },
+		{ frame: 'Vue' },
+		{ frame: 'Angular' }
+	];
+	
+	let current = frames[0];
 </script>
 
 <style>
@@ -28,23 +35,10 @@
 </style>
 
 <div class="btns-container">
-    <button
-        class:active="{current === 'svelte'}"
-        on:click="{() => current = 'svelte'}"
-    >Svelte</button>
-
-    <button
-        class:active="{current === 'react'}"
-        on:click="{() => current = 'react'}"
-    >React</button>
-
-    <button
-        class:active="{current === 'vue'}"
-        on:click="{() => current = 'vue'}"
-    >Vue</button>
-
-    <button
-        class:active="{current === 'angular'}"
-        on:click="{() => current = 'angular'}"
-    >Angular</button>
+    {#each frames as frame}
+        <button
+            class:active={current === frame}
+            on:click={() => current = frame}
+        >{frame.frame}</button>
+    {/each}
 </div>
